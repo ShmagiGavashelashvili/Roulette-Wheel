@@ -1,4 +1,5 @@
 .animation {
+    -webkit-animation: lucky-ball-spin 9.2 linear;
     animation: lucky-ball-spin  9.2s linear;
   }
   
@@ -73,7 +74,8 @@
   .btn-numbers button {
     border: none;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: .9rem;
+    text-align: center;
     cursor: pointer;
     width: 30px;
     margin: 5px 2px 2px 2px;
@@ -87,12 +89,19 @@
      
 
        @media(min-width: 320px){
+        margin: 5px 2px 2px 0px;
+        padding-top: 2px;
+       }
+
+       @media(min-width: 768px){
         margin: 5px 2px 2px 1px;
         padding-top: 2px;
        }
   }
   
-  
+  .padding-left {
+    padding-left: 5px;
+  }
   
   .btn-numbers button:hover {
     background-color: black;
@@ -132,13 +141,17 @@
       }
 
       
-      @media(min-width: 768px){
+      @media(min-width: 1024px){
         width: 75%;
     }
 
     @media(min-width: 1200px){
         width: 65%;
         height: 40rem;
+    }
+
+    @media(min-width: 1400px){
+      width: 54%;
     }
 
       &-title {
@@ -269,6 +282,9 @@
           left: 19.5rem;
           top: 28.5rem;
       }
+      @media(min-width: 1400px){
+        top: 31.5rem;
+    }
 }
 
 .btn-black{
@@ -383,6 +399,9 @@
 
 
 .not-animation {
+    -webkit-animation-name: move;
+    -webkit-animation-duration: 1.4s;
+    -webkit-animation-timing-function: ease-out;
     animation-name: move;
     animation-duration: 1.4s;
     animation-timing-function: ease-out;
@@ -392,10 +411,12 @@
 @keyframes move {
     0% {
         opacity: 0;
+        -webkit-transform: translateY(-20rem);
         transform: translateY(-20rem);
     }
 
     100% {
+      -webkit-transform: translateY(1rem);
       transform: translateY(1rem);
     }
 }

@@ -17,7 +17,7 @@ function Roulette() {
   const [luckycolor, setluckyColor] = useState(null)
   const [numbers] = useState(Array.from(Array(37).keys()))
   const [chosedNum, setChosedNum] = useState('N')
-
+  
   const handelClickStart = () => {
     const randomNumber = Math.floor(Math.random() * 36 + 1)
     const randomColor = Math.floor(Math.random() * 2)
@@ -65,6 +65,7 @@ function Roulette() {
     numbers.map(num =>(
       <button
        key={num}
+       className={window.navigator.userAgent.match(/iPhone/i) ? 'padding-left' : ''}
        value={num}
        onClick={(e) => handleClickLuckyNumber(e.target.value)}
        disabled={Number(num) === Number(chosedNum) || mode === 'color'}>
