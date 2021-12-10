@@ -3,6 +3,23 @@
   animation: lucky-ball-spin 9.2s linear;
 }
 
+.heading-title {
+  font-size: 35px;
+  text-align: center;
+  padding: 20px 0 20px 0;
+  color: #78c167;
+}
+
+.main_container {
+  background-color: #333;
+  height: 100vh;
+  width: 100%;
+
+  @media (max-width: 600px) {
+    height: 150vh;
+  }
+}
+
 .roulette {
   position: absolute;
 
@@ -245,8 +262,12 @@
   }
 }
 
+.color-btns {
+  text-align: center;
+}
+
 .btn-groups {
-  height: 5.5rem;
+  height: 6rem;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -254,7 +275,7 @@
 
   @media (min-width: 320px) {
     left: 2.5rem;
-    top: 26rem;
+    top: 30rem;
     width: 74%;
   }
 
@@ -319,10 +340,6 @@
   position: absolute;
   top: 2rem;
   left: 2rem;
-
-  & label {
-    cursor: pointer;
-  }
 }
 
 .lucky-color {

@@ -1,0 +1,33 @@
+.input_wrapper {
+  & label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  & h2 {
+    font-size: 25px;
+
+    @media (max-width: 600px) {
+      font-size: 15px;
+    }
+  }
+
+  & input[type="checkbox"] {
+    display: none;
+  }
+
+  & span {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 7px;
+    background-color: #ffff;
+    transition: all 0.3s;
+    margin-right: 10px;
+  }
+}
+
+.checked {
+  background-color: rgb(9, 67, 87) !important;
+}

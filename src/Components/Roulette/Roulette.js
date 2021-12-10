@@ -5,6 +5,7 @@ import rouletteSound from "../../sounds/roulette.mp3";
 import "../../styles/roulette.scss";
 import FormRoulette from "../FormRoulette/FormRoulette";
 import Notification from "../Notification/Notification";
+import Button from "../_shared/Button/Button";
 
 function Roulette() {
   const [start, setStart] = useState(false);
@@ -76,7 +77,7 @@ function Roulette() {
         className={window.navigator.userAgent.match(/iPhone/i) ? "padding-left" : ""}
         value={num}
         onClick={(e) => handleClickLuckyNumber(e.target.value)}
-        disabled={num === chosedNum || mode === "color" || (start && disableBtn)}
+        disabled={num === chosedNum || mode === "Color" || (start && disableBtn)}
       >
         {num}
       </button>
@@ -97,36 +98,35 @@ function Roulette() {
       )}
       <div className="btn-numbers">
         {generateNumbers()}
-        <button
-          disabled={mode === "Number" || (start && disableBtn)}
-          onClick={(e) => handleClickLuckyColor(e.target.value)}
-          value="black"
-          className="btn-black"
-        >
-          black
-        </button>
-        <button
-          disabled={mode === "Number" || (start && disableBtn)}
-          value="red"
-          onClick={(e) => handleClickLuckyColor(e.target.value)}
-          className="btn-red"
-        >
-          red
-        </button>
+        <div className="color-btns">
+          <Button
+            title="black"
+            disable={mode === "Number" || (start && disableBtn)}
+            handleClick={(e) => handleClickLuckyColor(e.target.value)}
+            className="btn-black"
+          />
+          <Button
+            title="red"
+            disable={mode === "Number" || (start && disableBtn)}
+            handleClick={(e) => handleClickLuckyColor(e.target.value)}
+            className="btn-red"
+          />
+        </div>
       </div>
       {mode === "Number" && (
         <p className={start ? "lucky-number" : "lucky-number bck-color"}>{luckyNumber}</p>
       )}
-      {mode === "color" && (
+      {mode === "Color" && (
         <div style={{ backgroundColor: color }} className={start ? "" : "lucky-color"}></div>
       )}
       <div className="btn-groups">
-        <button className="btn-spin" onClick={handelClickStart} disabled={disableBtn}>
-          spin
-        </button>
-        <button className="btn-spin" onClick={reset} disabled={start}>
-          reset
-        </button>
+        <Button
+          className="btn-spin"
+          title="spin"
+          handleClick={handelClickStart}
+          disable={disableBtn}
+        />
+        <Button className="btn-spin" title="reset" handleClick={reset} disable={start} />
       </div>
     </div>
   );

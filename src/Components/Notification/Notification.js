@@ -12,7 +12,7 @@ function Notification({ mode, chosedNum, luckyNumber, color, luckycolor }) {
               src="https://media.giphy.com/media/g9582DNuQppxC/source.gif"
             />
           )
-        : mode === "color"
+        : mode === "Color"
         ? color === luckycolor && (
             <img
               className="winner"
@@ -30,7 +30,7 @@ function Notification({ mode, chosedNum, luckyNumber, color, luckycolor }) {
               src="https://media.giphy.com/media/14xreOl4Yva0dW/source.gif"
             />
           )
-        : mode === "color"
+        : mode === "Color"
         ? color !== luckycolor && (
             <img
               className="winner"
