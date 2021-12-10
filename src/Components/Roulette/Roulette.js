@@ -74,6 +74,7 @@ function Roulette() {
     numbers.map((num) => (
       <button
         key={num}
+        data-testid={`btns-${num}`}
         className={window.navigator.userAgent.match(/iPhone/i) ? "padding-left" : ""}
         value={num}
         onClick={(e) => handleClickLuckyNumber(e.target.value)}
@@ -85,7 +86,12 @@ function Roulette() {
 
   return (
     <div className="Roulette">
-      <FormRoulette mode={mode} setMode={setMode} reset={setDisableBtn} />
+      <FormRoulette
+        mode={mode}
+        setMode={setMode}
+        reset={setDisableBtn}
+        disable={start && disableBtn}
+      />
       <img src={casino} alt="wheel" className={start ? "roulette animation" : "roulette"} />
       {show && (
         <Notification
