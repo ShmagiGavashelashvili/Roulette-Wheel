@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import casino from "../../images/casino.png";
 import useSound from "use-sound";
-import rouletteSound from "../../sounds/roulette.mp3";
 import "../../styles/roulette.scss";
 import FormRoulette from "../FormRoulette/FormRoulette";
 import Notification from "../Notification/Notification";
 import Button from "../_shared/Button/Button";
+import rouletteSound from "../../sounds/roulette.mp3"
+
 
 function Roulette() {
-  const [start, setStart] = useState(false);
-  const [mode, setMode] = useState("Number");
+  const [start, setStart] = useState<boolean>(false);
+  const [mode, setMode] = useState<string>("Number");
   const [play] = useSound(rouletteSound);
-  const [show, setShow] = useState(false);
-  const [color, setColor] = useState("");
-  const [disableBtn, setDisableBtn] = useState(true);
-  const [luckyNumber, setLuckyNumber] = useState(null);
-  const [luckycolor, setluckyColor] = useState(null);
-  const [numbers] = useState(Array.from(Array(37).keys()));
-  const [chosedNum, setChosedNum] = useState(null);
+  const [show, setShow] = useState<boolean>(false);
+  const [color, setColor] = useState<string>("");
+  const [disableBtn, setDisableBtn] = useState<boolean>(true);
+  const [luckyNumber, setLuckyNumber] = useState<number | null>(null);
+  const [luckycolor, setluckyColor] = useState<string | null>(null);
+  const [numbers] = useState<number[]>(Array.from(Array(37).keys()));
+  const [chosedNum, setChosedNum] = useState<number | null>(null);
 
-  let colors = ["black", "red"];
-  let randomNumber;
-  let randomColor;
+  let colors: [string, string] = ["black", "red"]
+  let randomNumber: number;
+  let randomColor: number;
 
-  const handelClickStart = () => {
+  const handelClickStart = (): void => {
     randomNumber = Number(Math.floor(Math.random() * 36 + 1));
     randomColor = Math.floor(Math.random() * 2);
     setStart(true);
@@ -32,17 +33,17 @@ function Roulette() {
     setLuckyNumber(null);
     setColor("");
     setDisableBtn(true);
-    setTimeout(() => {
+    setTimeout((): void => {
       setLuckyNumber(randomNumber);
       setStart(false);
       setShow(true);
       setDisableBtn(true);
       setColor(colors[randomColor]);
     }, 9200);
-    setTimeout(() => {
+    setTimeout((): void => {
       setColor("");
       setLuckyNumber(null);
-      setChosedNum();
+      setChosedNum(null);
       setluckyColor(null);
       setDisableBtn(true);
       setShow(false);
@@ -53,31 +54,31 @@ function Roulette() {
     setShow(false);
     setStart(false);
     setDisableBtn(true);
-    setLuckyNumber("");
+    setLuckyNumber(null);
     setChosedNum(null);
     setMode("Number");
-    setluckyColor();
+    setluckyColor('');
     setColor("");
   };
 
-  const handleClickLuckyNumber = (e) => {
+  const handleClickLuckyNumber = (e: React.MouseEvent<HTMLButtonElement>): void => {
     setDisableBtn(false);
-    setChosedNum(Number(e));
+    setChosedNum(Number((e.target as HTMLButtonElement).value));
   };
 
-  const handleClickLuckyColor = (e) => {
+  const handleClickLuckyColor = (e: React.MouseEvent<HTMLButtonElement>): void => {
     setDisableBtn(false);
-    setluckyColor(e);
+    setluckyColor((e.target as HTMLButtonElement).value);
   };
 
-  const generateNumbers = () =>
+  const generateNumbers = (): JSX.Element[] =>
     numbers.map((num) => (
       <button
         key={num}
         data-testid={`btns-${num}`}
         className={window.navigator.userAgent.match(/iPhone/i) ? "padding-left" : ""}
         value={num}
-        onClick={(e) => handleClickLuckyNumber(e.target.value)}
+        onClick={handleClickLuckyNumber}
         disabled={num === chosedNum || mode === "Color" || (start && disableBtn)}
       >
         {num}
@@ -108,13 +109,13 @@ function Roulette() {
           <Button
             title="black"
             disable={mode === "Number" || (start && disableBtn)}
-            handleClick={(e) => handleClickLuckyColor(e.target.value)}
+            handleClick={handleClickLuckyColor}
             className="btn-black"
           />
           <Button
             title="red"
             disable={mode === "Number" || (start && disableBtn)}
-            handleClick={(e) => handleClickLuckyColor(e.target.value)}
+            handleClick={handleClickLuckyColor}
             className="btn-red"
           />
         </div>

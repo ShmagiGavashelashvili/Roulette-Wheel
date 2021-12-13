@@ -1,7 +1,16 @@
 import React from "react";
 import "./checkbox.scss";
 
-const Checkbox = ({ mode, handleChange, value, id, disable }) => {
+
+interface CheckboxProps {
+  mode: string,
+  handleChange(event: React.ChangeEvent<HTMLInputElement>): void,
+  value: string,
+  id: string,
+  disable: boolean
+}
+
+const Checkbox = ({ mode, handleChange, value, id, disable }: CheckboxProps) => {
   return (
     <div className="input_wrapper">
       <label htmlFor={id}>

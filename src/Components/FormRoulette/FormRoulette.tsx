@@ -2,8 +2,15 @@ import React from "react";
 import "../../styles/roulette.scss";
 import Checkbox from "../_shared/Checkbox/Checkbox";
 
-function FormRoulette({ setMode, mode, reset, disable }) {
-  const handleChange = (event) => {
+interface FormProps {
+  setMode(event: string): void,
+  mode: string,
+  reset(value: boolean): void,
+  disable: boolean
+}
+
+function FormRoulette({ setMode, mode, reset, disable }: FormProps) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setMode(event.target.value);
     reset(true);
   };
