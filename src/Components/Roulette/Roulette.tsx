@@ -50,7 +50,7 @@ function Roulette() {
     }, 12900);
   };
 
-  const reset = () => {
+  const reset = (): void => {
     setShow(false);
     setStart(false);
     setDisableBtn(true);
